@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Autocomplete Example</title>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+	<label for="search">Search: </label>
+	<input type="text" id="search" name="search" autocomplete="off">
+	<div id="suggestions"></div>
+	<script src="autocomplete.js"></script>
+</body>
+</html>
+
+
+$(document).ready(function() {
+	// Array of suggestions
+	var suggestions = ['apple', 'banana', 'cherry', 'durian', 'elderberry', 'fig', 'grape', 'honeydew', 'kiwi', 'lemon'];
+
+	// Function to display suggestions
+	function showSuggestions() {
+		var inputVal = $('#search').val();
+		var matches = [];
+
+		// Find matches in suggestions array
+		for (var i = 0; i < suggestions.length; i++) {
+			if (suggestions[i].toLowerCase().indexOf(inputVal.toLowerCase()) >= 0) {
+				matches.push(suggestions[i]);
+			}
+		}
+
+		// Display matches in suggestions div
+		var outputHtml = '';
+		for (var i = 0; i < matches.length; i++) {
+			outputHtml += '<p>' + matches[i] + '</p>';
+		}
+		$('#suggestions').html(outputHtml);
+	}
+
+	// Event listener for typing in search box
+	$('#search').on('keyup', function() {
+		showSuggestions();
+	});
+});

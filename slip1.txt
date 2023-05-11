@@ -1,0 +1,69 @@
+<html>
+<form action="cooks.php" method="GET">
+
+Font Style:
+<select name="style">
+  <option value="Arial">Arial</option>
+  <option value="Times New Roman">Times New Roman</option>
+  <option value="Monotype Cursiva">Monotype Cursiva</option>
+</select><br><br>
+
+Font color:
+<select name="color">
+  <option value="black">BLACK</option>
+  <option value="white">WHITE</option>
+  <option value="red">RED</option>
+  <option value="blue">BLUE</option>
+</select><br><br>
+
+Font Size:
+<select name="size">
+  <option value="2">2 pt</option>
+  <option value="12">12 pt</option>
+  <option value="32">32 pt</option>
+  <option value="64">64 pt</option>
+</select><br><br>
+
+Background color:
+<select name="bg">
+  <option value="black">BLACK</option>
+  <option value="white">WHITE</option>
+  <option value="red">RED</option>
+  <option value="blue">BLUE</option>
+</select><br><br>
+<input type="submit" value="change">
+</form>
+</html>
+
+
+<?php
+	$style=$_GET['style'];
+	$size=$_GET['size'];
+	$color=$_GET['color'];
+	$bg=$_GET['bg'];
+
+	echo "<br><br>Font Style : $style";
+	echo "<br><br>Font Size : $size";
+	echo "<br><br>Font Color : $color";
+	echo "<br><br>Backgroud Color : $bg";
+	
+	setcookie("sty",$style);
+	setcookie("siz",$size);
+	setcookie("clr",$color);
+	setcookie("bgclr",$bg);	
+?>
+<br><br><a href="cooks1.php">show</a>
+
+
+<?php
+	$style=$_COOKIE['sty'];
+	$fsize=$_COOKIE['siz'];
+	$fcolor=$_COOKIE['clr'];
+	$bgcolor=$_COOKIE['bgclr'];
+	
+	$text="Hello World";
+	
+	echo "<body bgcolor=$bgcolor>";
+	echo "<font size=$fsize color=$fcolor style=$style>$text";
+	echo "</font></body>";
+?>
